@@ -1,7 +1,7 @@
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 %global VERSION 0.6.26
-%global Release 1
+%global Release 2
 
 Summary:        Encrypted bandwidth-efficient backup using rsync algorithm
 Name:           duplicity
@@ -10,13 +10,10 @@ Release:        %{Release}%{?dist}
 License:        GPLv2+
 Group:          Applications/Archiving
 URL:            http://www.nongnu.org/duplicity/
-#Source0:         http://savannah.nongnu.org/download/%{name}/%{name}-%{VERSION}.tar.gz
 Source0:        https://code.launchpad.net/%{name}/0.6-series/%{VERSION}/+download/%{name}-%{VERSION}.tar.gz
-#Patch0:         duplicity-0.6.22-documentation.patch
-#Patch1:         duplicity-0.6.25-librsync-1.0.0.patch
 Requires:       python-GnuPGInterface >= 0.3.2, gnupg >= 1.0.6
 Requires:       openssh-clients, ncftp >= 3.1.9, rsync, python-boto >= 0.9d
-Requires:       python-paramiko
+Requires:       python-paramiko, python-lockfile
 BuildRequires:  python-devel, librsync-devel >= 0.9.6, python-setuptools
 
 %if 0%{?rhel}  != 5
@@ -40,8 +37,6 @@ but not hard links.
 
 %prep
 %setup -q
-#%patch0 -p1 -b .documentation
-#%patch1 -p1 -b .librsync-1.0.0
 
 %build
 %{__python} setup.py build
@@ -70,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/%{name}/cacert.pem
 
 %changelog
+* Fri Sep 04 2015 Adam Crews <adam.crews@gmail.com> - 0.6.26-2
+- Add python-lockfile
+
 * Thu Sep 03 2015 Adam Crews <adam.crews@gmail.com> - 0.6.26-1
 - Bump version
 
