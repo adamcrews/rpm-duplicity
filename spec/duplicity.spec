@@ -1,7 +1,7 @@
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
-%global VERSION 0.6.26
-%global Release 2
+%global VERSION 0.7.04
+%global Release 1
 
 Summary:        Encrypted bandwidth-efficient backup using rsync algorithm
 Name:           duplicity
@@ -10,7 +10,7 @@ Release:        %{Release}%{?dist}
 License:        GPLv2+
 Group:          Applications/Archiving
 URL:            http://www.nongnu.org/duplicity/
-Source0:        https://code.launchpad.net/%{name}/0.6-series/%{VERSION}/+download/%{name}-%{VERSION}.tar.gz
+Source0:        https://code.launchpad.net/%{name}/0.7-series/%{VERSION}/+download/%{name}-%{VERSION}.tar.gz
 Requires:       python-GnuPGInterface >= 0.3.2, gnupg >= 1.0.6
 Requires:       openssh-clients, ncftp >= 3.1.9, rsync, python-boto >= 0.9d
 Requires:       python-paramiko, python-lockfile
